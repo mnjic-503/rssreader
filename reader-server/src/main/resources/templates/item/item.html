@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--    <link th:href="@{/css/main_css.css}" rel="stylesheet">-->
+    <title>Mini Reader</title>
+</head>
+<body style="padding: 10px">
+<div th:if="${item != null}">
+    <div>
+        <h3 class=".h3" th:text="${item.getTitle()}">Panel title</h3>
+    </div>
+    <div>
+        <h5><small th:text="${item.getFeed().getTitle()}+'/  '+${item.getPubDate()}"></small></h5>
+        <br>
+    </div>
+    <div th:utext="${item.getDescription()}">
+        Panel content
+    </div>
+</div>
+<script>
+    var h1s = document.getElementsByTagName("h1");
+    for (var i = 0;i<h1s.length;i++){
+        h1s.item(i).setAttribute("class","h4");
+    }
+    var h2s = document.getElementsByTagName("h2");
+    for (var i = 0;i<h2s.length;i++){
+        h2s.item(i).setAttribute("class","h4");
+    }
+    var h3s = document.getElementsByTagName("h3");
+    for (var i = 0;i<h3s.length;i++){
+        h3s.item(i).setAttribute("class","h4");
+    }
+    var imgs = document.getElementsByTagName("img");
+    for (var i = 0;i<imgs.length;i++){
+        imgs.item(i).setAttribute("class","img-thumbnail");
+        imgs.item(i).setAttribute("width","100% \\9");
+        imgs.item(i).setAttribute("style","background-color: transparent;box-shadow:0px 0px 3px 2px #ccc");
+    }
+    var spans = document.getElementsByTagName("span");
+    for (var i = 0;i<spans.length;i++){
+        spans.item(i).setAttribute("class",Array.isArray("label","label-default"))
+    }
+</script>
+
+</body>
+</html>

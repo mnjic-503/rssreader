@@ -1,0 +1,52 @@
+#项目访问根路径
+server:
+  servlet:
+    context-path: /reader
+  port: 8080
+#禁用模板缓存
+spring:
+  thymeleaf:
+    cache: false
+  #开放隐藏的请求方式  PUT DELETE
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  #数据库配置
+  datasource:
+    url: jdbc:mysql://47.106.164.78/reader4rss?serverTimezone=GMT
+    username: reader4rss
+    password: reader4rss
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #加载sql配置文件
+    initialization-mode: always
+    #数据源的其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,slf4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  jpa:
+    hibernate:
+      ddl-auto: update
+      #SpringData默认使用驼峰命名法，在实体类中会解析为数据库中 **_** 的形式
+      #关闭驼峰命名法
+      #naming:
+      #physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
